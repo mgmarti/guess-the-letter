@@ -23,24 +23,28 @@ console.log(guessedLetters)
 var computerGuess = guesses[Math.floor(Math.random() * guesses.length)];
 console.log(computerGuess)
 
-
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
-var userGuess = event.key;  
+var userGuess = event.key;
 
 // Determines which key was pressed.
 
 console.log(userGuess)
 if (userGuess === computerGuess) {
+    console.log("You won!")
     wins++;
-    guessesRemaining = 10;
+    computerGuess = guesses[Math.floor(Math.random() * guesses.length)];
+
 
 } else if (userGuess !== computerGuess) {
     guessesRemaining--;
+    guessedLetters.innerHTML = guessedLetters.join(',');
 }
 
 if (guessesRemaining === 0) {
     losses++
+    computerGuess = guesses[Math.floor(Math.random() * guesses.length)];
+
 }
 
 
@@ -52,5 +56,5 @@ winsText.textContent = "wins: " + wins;
 lossesText.textContent = "losses: " + losses;
 guessesRemainingText.textcontent = "Guesses remaining: " + guessesRemaining;
 guessedLettersText.textContent = "Your guesses so far: " + userGuess;
-  }
+}
 
